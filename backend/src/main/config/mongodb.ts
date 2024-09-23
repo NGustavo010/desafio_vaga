@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import env from './env';
 
-export const connectMongoDb = () => {
-    mongoose.connect(env.mongoDbUri, {
+export const connectMongoDb = async () => {
+    await mongoose.connect(env.mongoDbUri, {
         user: env.mongoDbUser,
         pass: env.mongoDbPassword,
     })

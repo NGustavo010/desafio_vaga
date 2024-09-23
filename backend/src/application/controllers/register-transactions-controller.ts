@@ -1,9 +1,8 @@
 import { Controller } from "@/contracts/application/controllers/controller";
 import { HttpRequest, HttpResponse } from "@/contracts/application/controllers/http";
-import { noContent, ok } from "@/application/helpers/http/http-helper";
+import { ok } from "@/application/helpers/http/http-helper";
 import fs from "fs";
 import { Transaction } from "@/domain/entities/transaction";
-import { RegisterTransactions } from "@/domain/usecases/register-transactions";
 import { RegisterTransactionsContract } from "@/contracts/domain/usecases/register-transactions-contract";
 
 export class RegisterTransactionsController extends Controller {
