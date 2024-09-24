@@ -3,6 +3,7 @@ import { Button, Flex, FormControl, FormLabel, Image, Input, Spinner, Stack, Tex
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { BackButton } from "./back-button";
 
 export type RegisterTransactionsFormData = {
     file: FileList,
@@ -91,13 +92,7 @@ export default function RegisterTransactions() {
                                     </Flex>
                                 ) : (
                                     <Stack direction="row" w="100%" marginTop="10px">
-                                        <Button
-                                            backgroundColor="whiteDefault" color="primaryBlue" border="1px solid" borderColor="primaryBlue" w="100%"
-                                            transition={"all 0.3s ease-in-out"}
-                                            _hover={{ backgroundColor: "whiteDefaultHover", color: "primaryBlueHover", borderColor: "primaryBlueHover" }}
-                                            >
-                                            Voltar
-                                        </Button>
+                                        <BackButton />
                                         <Button type="submit"
                                             backgroundColor="primaryBlue" color="secondaryBlue" w="100%"
                                             transition={"all 0.3s ease-in-out"}
