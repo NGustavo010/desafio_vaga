@@ -47,13 +47,12 @@ export default function RegisterTransactions() {
                     <Text color="primaryBlue" fontWeight="bold" fontSize="30px" align="center">Adicione dados de transações</Text>
                     <Input
                         type="file"
-                        onChange={()=>console.log("teste")}
                         display="none"
                         id="file-input"
                     />
                     <FormProvider {...methods}>
                         <FormControl as="form" isRequired onSubmit={handleSubmit(registerTransactionsSubmit)}>
-                            <FormLabel>Escolha um arquivo</FormLabel>
+                            <FormLabel color="primaryBlue">Escolha um arquivo</FormLabel>
                             <Input
                                 type="file"
                                 accept=".txt"
