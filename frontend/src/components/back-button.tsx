@@ -10,7 +10,7 @@ export const BackButton = () => {
                 backgroundColor="whiteDefault" color="primaryBlue" border="1px solid" borderColor="primaryBlue" w="100%"
                 transition={"all 0.3s ease-in-out"}
                 _hover={{ backgroundColor: "whiteDefaultHover", color: "primaryBlueHover", borderColor: "primaryBlueHover" }}
-                onClick={() => router.back()}
+                onClick={() => router.push("/")}
                 >
                 Voltar
             </Button>

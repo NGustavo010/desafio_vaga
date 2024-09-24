@@ -26,6 +26,7 @@ export const FilterField = ({
                     placeholder={placeholder}
                     size="md"
                     w="200px"
+                    color="primaryBlue"
                     {
                         ...register(registerData)
                     }
