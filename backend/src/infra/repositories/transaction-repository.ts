@@ -56,7 +56,7 @@ export class TransactionRepository implements GetTransactionRepository, AddTrans
             }
         }
         const skip = (page - 1) * pageSize;
-        const transactions = await Transaction.find(filter).skip(skip).limit(pageSize) as GetFilteredTransactionsRepositoryResponse;
+        const transactions = await Transaction.find(filter, { _id: 0, __v: 0 }).skip(skip).limit(pageSize) as GetFilteredTransactionsRepositoryResponse;
         return transactions;
     }
 }
