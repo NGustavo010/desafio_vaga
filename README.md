@@ -1,167 +1,110 @@
-
-  
-
 <p  align="center"  width="100%">
-
-  
 
 <img  width="128px"  src="images/favicon.ico"  alt="Zeztra">
 
-  
-
 </p>
-
-  
-
-  
 
 ## Desafio FullStack Zeztra
 
-  
+# Projeto de Registro e Busca de Transações
 
-  
+Este projeto é composto por uma aplicação backend e frontend. O backend oferece duas rotas principais: uma para registrar transações a partir de um arquivo `.txt`, e outra para buscar transações previamente cadastradas. O frontend, por sua vez, apresenta uma interface com uma página inicial e duas páginas adicionais, cada uma delas responsável por realizar uma ação específica: cadastrar transações e buscar transações.
 
-**Façam a leitura deste documento com muita atenção do começo ao fim.**
+## Estrutura do projeto
 
-  
+A aplicação é dividida em duas partes:
 
-  
+- **Backend**: Oferece uma API com duas rotas:
 
-O intuito deste teste é avaliar seus conhecimento técnicos com a stack MERN (Mongo, Express, React, Nodejs), fazendo uso do NextJS e Typescript (tanto no front-end quanto no back-end).
+  - `/transaction` (POST): para registrar transações a partir de um arquivo.
+  - `/transaction` (GET): para buscar transações cadastradas com base em filtros como CPF/CNPJ, ID da transação, datas, entre outros.
 
-  
+- **Frontend**: Uma interface simples com três páginas:
 
-  
+  - **Home**: Página inicial de boas-vindas.
+  <p  align="center"  width="100%">
+    <img src="images/HomePage.png"  alt="Home page">
+  </p>
 
-O teste consiste em ler <a  href="https://github.com/Zeztra/desafio_vaga/blob/main/transacoes.txt">este arquivo de texto</a>, salvar os clientes e atrelar as transações a eles, além de apresentar esses dados em tela no ReactJS.
+  - **Registrar Transações**: Página para enviar um arquivo `.txt` e registrar transações.
+  <p  align="center"  width="100%">
+    <img src="images/RegisterTransactionsPage.png"  alt="Register transactions page">
+  </p>
 
-  
+  - **Buscar Transações**: Página para realizar buscas de transações já registradas, utilizando filtros de busca variados.
+  <p  align="center"  width="100%">
+    <img src="images/SearchTransactionsPage.png"  alt="Search transactions page">
+  </p>
 
-  
+## Requisitos
 
-O teste pode ser realizado em quanto tempo quiser, porém, gostariamos que realizasse em não mais que algumas poucas horas.
+Para rodar a aplicação, você precisará ter os seguintes requisitos instalados:
 
-  
+- [Node.js](https://nodejs.org/) (inclui npm)
+- [Docker](https://www.docker.com/) com [Docker Compose](https://docs.docker.com/compose/)
 
-  
+## Como rodar a aplicação
 
-## Instruções para o desafio
+### Backend
 
-  
+1. Navegue até o diretório do backend:
+   ```bash
+   cd backend
+   ```
+2. Suba os containers Docker necessários:
+   ```bash
+   docker-compose up -d
+   ```
+3. Instale as dependências do projeto:
+   ```bash
+   npm install
+   ```
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
 
-  
+### Frontend
 
-1. Faça um fork deste projeto para a sua conta no Github (crie uma caso não tenha);
+1.  Navegue até o diretório do frontend:
+    ```bash
+    cd frontend`
+    ```
+2.  Instale as dependências do projeto:
+    ```bash
+    npm install`
+    ```
+3.  Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run dev`
+    ```
 
-  
+## Testando o backend com cURL
 
-2. Em seguida, impletemente os projetos tal qual descrito abaixo, em seu clone local;
+### Rota: Register Transactions
 
-  
+Para cadastrar transações enviando um arquivo `.txt`:
 
-3. Use a pasta frontend para o portal, e backend para a API;
+```bash
+curl --request POST \
+--url http://localhost:3333/transaction \
+--header 'Content-Type: multipart/form-data' \
+--form 'file=@[PATH_FILE]'
+```
 
-  
+Substitua `[PATH_FILE]` pelo caminho real do arquivo `.txt` que deseja enviar.
 
-4. Para a entrega do teste, envie um email com o link do Github para **vitor.ricardo@zeztra.com**.
+### Rota: Search Transactions
 
-  
+Para buscar transações cadastradas:
 
-  
+```bash
+curl --request GET \
+--url 'http://localhost:3333/transaction?cpfCnpj=&transactionId=&startDate=&endDate=&name=&page=&pageSize='
+```
 
-## Descrição do Teste
+Preencha os parâmetros da URL com os valores desejados para filtrar as transações.
 
-  
+## Acessando o Portal
 
-  
-
-Uma empresa recebe diariamente um arquivo TXT com várias conciliações de pagamentos de seus clientes.
-
-  
-
-  
-
-Seu objetivo é criar um projeto usando NextJS com Typescript, fazer upload do arquivo TXT enviar para a API em NodeJS/Typescript, armazenar no MongoDB e as suas transações.
-
-
-#### O portal Web deve conter as seguintes funcionalidades:
-
-  
-
-Tela de dashboard, com:
-
-- [ ] botão com upload do arquivo TXT;
-
-- [ ] tabela com a listagem de transações paginada, ordenada pela data da transação;
-- [ ] Filtros de busca para listagem, com por exemplo: por nome e/ou range de data da transação;
-
-  
-
-  
-
-Fique a vontade para usar alguma lib que auxilie no layout.
-
-  
-
-  
-
-#### A API deve ter os seguintes endpoints, seguindo suas respectitivas regras de negócio:
-
-  
-
-  
-
-1. Endpoint para receber o arquivo txt das transações, e para cada linha do TXT:
-
-  
-
-- [ ] Cadastrar o cliente no banco de dados, caso não exista;
-
-  
-
-- [ ] Cadastrar a transação relacionada ao cliente;
-
-   
-
-- [ ] Não deixar duplicar a transação, caso ela já exista na base;
-- [ ] Calcule o tempo da execução da leitura completa do arquivo.
-
-  
-
-2. Endpoint de listagem de transação;
-
-  
-
-- [ ] Preferencialmente, faça a paginação para o frontend direto na consulta;
-- [ ] Aplique os filtros de buscas;
-  
-
-#### Avaliação
-
-  
-
-Seu projeto será avaliado de acordo com os seguintes critérios:
-
-  
-
-  
-
-1. Sua aplicação atende os requisitos básicos?
-
-  
-
-2. Você documentou no README o que deve ser feito para ela rodar?
-
-  
-
-3. Como foi arquitetou ambos os projetos.
-
-  
-
-4. Seu conhecimento geral sobre a stack MERN.
-
-  
-
-  
-
-Boa sorte!
+Com o backend e o frontend em execução, basta acessar `http://localhost:3000` no seu navegador. A partir daí, você poderá navegar pelo portal e utilizar as funcionalidades de cadastro e busca de transações de forma correta.
